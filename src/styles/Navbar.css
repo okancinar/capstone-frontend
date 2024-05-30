@@ -51,10 +51,10 @@
     right: 0;
     background-color: #ffffff;
     color: #000000;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ccc; /* Öğeye, 1 piksel genişliğinde, kesintisiz (solid) ve açık gri (#ccc) renkte bir kenarlık ekler. */
+    border-radius: 5px; /* Kenarların 5 piksel yarıçapında yuvarlatılmasını sağlar, bu da öğeye hafif yuvarlak köşeler verir. */
     list-style: none;
-    padding: 10px 0;
+    padding: 10px 0; /* üst ve alttan 10 px boşluk, yanlardan 0 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10;
   }

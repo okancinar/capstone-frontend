@@ -1,24 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/AccountPage.css';
 import accountIcon from '../assets/account-icon.png'; // Örnek kullanıcı fotoğrafı
 
 const AccountPage = () => {
+  const navigate = useNavigate();
+
   const user = {
     photo: accountIcon, // Kullanıcı fotoğrafı
     email: 'user@example.com',
     password: '********',
-    modelVersion: 'v1.0.0', // Modelin versiyonu
+    modelVersion: 'v1.8', // Modelin versiyonu
     lastTrained: '01/01/2024 12:00' // Son eğitilme tarihi
   };
 
   const handleChangeEmail = () => {
-    // Email değiştirme işlemi burada yapılacak
-    alert('Change Email clicked');
+    navigate('/change-email');
   };
 
   const handleChangePassword = () => {
-    // Şifre değiştirme işlemi burada yapılacak
-    alert('Change Password clicked');
+    
+    navigate('/change-password');
   };
 
   return (
@@ -36,7 +38,7 @@ const AccountPage = () => {
           <button onClick={handleChangePassword} className="change-button">
             Change Password
           </button>
-          <label className="user-label">Current Model Version (English)</label>
+          <label className="user-label">Latest Model Version Released</label>
           <p>{user.modelVersion}</p>
           <label className="user-label">Last Trained Date</label>
           <p>{user.lastTrained}</p>

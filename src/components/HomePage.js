@@ -10,14 +10,14 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <BackgroundVideo />
-      <div className="content">
-        <h1>MyApp</h1>
-        <p>Your Gateway to the Future</p>
+      <div className="home-content">
+        <h1 className="app-h1">Privatize<span className="highlight">Face</span></h1>
+        <span className="slogan">Secure and Private</span>
         <div className="button-group">
           <Button className="primary" onClick={() => navigate('/project')}>
             Go to Project Screen
           </Button>
-          <Button className="secondary" onClick={() => navigate('/upload')}>
+          <Button className="primary" onClick={() => navigate('/upload')}>
             Go to Upload and Train
           </Button>
         </div>

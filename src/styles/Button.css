@@ -11,7 +11,7 @@
   }
   
   .custom-button:hover {
-    background-color: #0056b3;
+    background-color: rgb(82, 185, 151);
     transform: scale(1.05);
   }
   
@@ -20,7 +20,7 @@
   }
   
   .custom-button.primary {
-    background-color: #007bff;
+    background-color: rgb(82, 185, 151);
   }
   
   .custom-button.secondary {

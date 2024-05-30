@@ -1,0 +1,62 @@
+.test-result-page {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .back-to-project-button {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    transition: background-color 0.3s;
+  }
+  
+  .back-to-project-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .result-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .image-container img {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 10px;
+  }
+  
+  .results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .person-info {
+    background-color: #f0f0f0;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #888888;
+    text-align: center;
+  }
+  
+  .person-info p {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  
+
+  
+
+  
+  

@@ -5,15 +5,23 @@ import '../styles/LoginPage.css';
 const LoginPage = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Kayıtlı giriş bilgileri
+  const validEmail = 'user@example.com';
+  const validPassword = '123';
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Giriş işlemi burada yapılacak
-    console.log('Email:', email);
-    console.log('Password:', password);
-    setIsLoggedIn(true); // Kullanıcı giriş durumunu güncelle
-    navigate('/project'); // Project screen sayfasına yönlendirme
+    if (email === validEmail && password === validPassword) {
+      console.log('Login Successful');
+      setIsLoggedIn(true);
+      navigate('/home');
+    } else {
+      setErrorMessage('Email or password is incorrect');  // Hata mesajı ayarı
+    }
   };
 
   return (
@@ -41,6 +49,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
           />
         </div>
         <button type="submit">Login</button>
+        {errorMessage && <div className="error-message">{errorMessage}</div>} 
       </form>
     </div>
   );

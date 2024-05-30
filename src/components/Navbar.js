@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import accountIcon from '../assets/account-icon.png';
-import settingsIcon from '../assets/settings.png';
 import logoutIcon from '../assets/log-out.png';
 
 const Navbar = ({ setIsLoggedIn }) => {
@@ -42,7 +41,7 @@ const Navbar = ({ setIsLoggedIn }) => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">MyApp</div>
+      <div className="navbar-brand">PrivatizeFace</div>
       <ul className="nav-links">
         <li>
           <Link to="/home">Home</Link>
@@ -61,10 +60,6 @@ const Navbar = ({ setIsLoggedIn }) => {
             <li onClick={handleAccount}>
               <img src={accountIcon} alt="Account" className="submenu-icon" />
               <span>Account</span>
-            </li>
-            <li>
-              <img src={settingsIcon} alt="Settings" className="submenu-icon" />
-              <span>Account Settings</span>
             </li>
             <li onClick={handleLogout}>
               <img src={logoutIcon} alt="Logout" className="submenu-icon" />

@@ -1,0 +1,38 @@
+/* VersionDropdown.css */
+.version-selector-mod {
+    position: absolute;
+    top: 20px; /*ekranın üstünden mesafe*/
+    left: 20px; /*ekranın solundan mesafe*/
+}
+
+.dropdown-button-mod {
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-menu-mod {
+    padding-left: 0px;
+    list-style: none;
+    background-color: gray;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 60px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.dropdown-menu-mod li {
+    padding: 8px 15px;
+    cursor: pointer;
+    color: white;
+}
+
+.dropdown-menu-mod li:hover {
+    background-color: #333;
+}

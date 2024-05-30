@@ -1,0 +1,25 @@
+/* Card.css */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #f5f5f5; /* Arka plan rengi */
+}
+
+.top-card {
+  width: 100%; /* Geniş kartın tam genişlik almasını sağlar */
+  margin: 10px 0;
+}
+
+.bottom-cards {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.card-item {
+  flex: 1; /* Alt kartların esnekliğini ayarlar */
+  margin: 10px;
+}

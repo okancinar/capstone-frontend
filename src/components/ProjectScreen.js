@@ -1,63 +1,94 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ProjectScreen.css';
-import cameraIcon from '../assets/camera-icon.png';
 import BackgroundVideo from './BackgroundVideo';
+import VersionDropdown from './VersionDropdown';
+import Card from './Card';
+import TestResultPage from './TestResultPage';
+import { FaFile, FaCaretDown, FaDropbox, FaGoogleDrive, FaFolder } from 'react-icons/fa';
+
 
 const ProjectScreen = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedVersion, setSelectedVersion] = useState('v1.1');
+  const [showFileDropdown, setShowFileDropdown] = useState(false);
+  const [showVersionDropdown, setShowVersionDropdown] = useState(false);
+  const navigate = useNavigate(); 
+
+  const toggleFileDropdown = () => {
+    setShowFileDropdown(!showFileDropdown);
+    if (showVersionDropdown) setShowVersionDropdown(false);
+  };
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const files = [...event.target.files];
+    const parsedFiles = files.map(file => {
+      const [firstName, lastName] = file.name.replace(/\..+$/, '').split('-'); // Dosya adını '.' karakterine göre ayırıp, ad ve soyadı '-' ile ayır
+      return { file, firstName, lastName };
+    });
+    setSelectedFiles(parsedFiles);
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      console.log('File uploaded:', selectedFile);
-      // Dosya yükleme işlemi burada yapılacak
-    } else {
-      alert('Please select a file first!');
-    }
-  };
-
+  
   const handleTest = () => {
-    if (selectedFile) {
-      console.log('Testing with file:', selectedFile);
-      // Yapay zeka modeli ile test işlemi burada yapılacak
+    if (selectedFiles.length > 0) {
+      const { file, firstName, lastName } = selectedFiles[0]; // İlk dosyayı ve isim bilgilerini al
+      navigate('/test-results', { state: { selectedImage: file, personName: firstName, personSurname: lastName } });
+      console.log('Selected files:', selectedFiles);
     } else {
-      alert('Please upload a file first!');
+      alert('Please choose a photo to test!');
     }
   };
 
   return (
     <div className="project-screen-container">
       <BackgroundVideo />
-      <div className="content">
-        <h2>Upload and Test</h2>
-        <div className="upload-container">
-          <input
-            type="file"
-            id="file-upload"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
-          <label htmlFor="file-upload" className="upload-label">
-            <img src={cameraIcon} alt="Upload" className="camera-icon" />
-          </label>
-          {selectedFile && (
-            <div className="file-info">
-              <p>{selectedFile.name}</p>
-              <img src={URL.createObjectURL(selectedFile)} alt="Selected" className="selected-image" />
-            </div>
-          )}
-        </div>
-        <button onClick={handleUpload} className="upload-button">
-          Upload
-        </button>
-        <button onClick={handleTest} className="test-button">
-          Test
-        </button>
+      <VersionDropdown 
+        selectedVersion={selectedVersion} 
+        setSelectedVersion={setSelectedVersion}
+      />
+      <div>
+      <h1 className="page-title">Project Using Screen</h1>
       </div>
+      <div className="content-wrapper">
+        <div className="content">
+          <div className="upload-container">
+            <input
+              type="file"
+              id="file-upload"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            <p className="current-ai-version-info">Current AI model version to test: {selectedVersion}</p>
+            <button onClick={toggleFileDropdown} className="file-chooser-button">
+              <h2><FaFile /> Choose a Photo</h2> <FaCaretDown />
+            </button>
+            {showFileDropdown && (
+              <ul className="dropdown-menu">
+                <li onClick={() => {
+                  document.getElementById('file-upload').click();
+                  setShowFileDropdown(false);
+                }}><FaFolder />  From Device</li>
+                <li onClick={() => setShowFileDropdown(false)}><FaGoogleDrive />  From Dropbox</li>
+                <li onClick={() => setShowFileDropdown(false)}><FaDropbox />  From Google Drive</li>
+              </ul>
+            )}
+            {selectedFiles.length > 0 && (
+              <div className="file-info">
+                <p>{selectedFiles.length} photo selected</p>
+              </div>
+            )}
+          </div>
+          <button onClick={handleTest} className="test-button">
+            Test Our AI Model 
+          </button>
+          
+        </div>
+        <Card />  {/* Card bileşenleri buraya geliyor. */}
+      </div>
+      
     </div>
   );
 };
